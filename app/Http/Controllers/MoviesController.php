@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers;
 use App\Helpers\RequestsHttp;
+use App\Http\Requests\UpdateMovieRequest;
 use App\Models\Gender;
 use App\Models\Movie;
 use App\Models\Movie_gender;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Http\Request;
 
 class MoviesController extends Controller
 {
@@ -34,13 +36,49 @@ class MoviesController extends Controller
     }
 
     public function deleteMovies(){
-        DB::beginTransaction();
         try{
-
+            DB::beginTransaction();
+            Movie_gender::truncate();
+            Movie::truncate();
             DB::commit();
+            return $this -> susccesResponse(["message" => "Peliculas eliminadas correctamente"], 200);
         }
         catch(\Exception $e){
             DB::rollback();
+           return $this -> errorResponse($e->getMessage(), 400);
+        }
+    }
+
+    public function deleteMovie(Movie $movie){
+        try{
+            DB::beginTransaction();
+            $movie -> delete();
+            DB::commit();
+            return $this -> susccesResponse(["title" => "Pelicula eliminada correctamente"], 200);
+        }
+        catch(\Exception $e){
+            DB::rollback();
+           return $this -> errorResponse($e->getMessage(), 400);
+        }
+    }
+    public function getMovies(){
+        try{
+
+            $movies = Movie::all() -> toArray();
+            return $this -> susccesResponse($movies, 200);
+        }
+        catch(\Exception $e){
+           return $this -> errorResponse($e->getMessage(), 400);
+        }
+    }
+
+    public function putMovie(UpdateMovieRequest $request, Movie $movie){
+        try{
+            $movie -> fill($request -> toArray());
+            $movie -> save();
+            return $this -> susccesResponse($movie -> toArray(), 200);
+        }
+        catch(\Exception $e){
            return $this -> errorResponse($e->getMessage(), 400);
         }
     }
