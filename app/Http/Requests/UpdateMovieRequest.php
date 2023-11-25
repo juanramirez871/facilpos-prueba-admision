@@ -15,6 +15,7 @@ class UpdateMovieRequest extends FormRequest
 
     public function rules(): array
     {
+        // se le dice las reglas obligatorias que necesita el request
         return [
             "name" => "required|string",
             "lenguage" => "required|string",
@@ -26,6 +27,7 @@ class UpdateMovieRequest extends FormRequest
 
     protected function failedValidation(validator $validator)
     {
+        // en caso de error en la validacion del request, enviar este mensaje
         throw new HttpResponseException(response()->json(['errors' => $validator->errors()], 400));
     }
 }

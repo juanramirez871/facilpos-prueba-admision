@@ -11,26 +11,30 @@ class MovieControllerTest extends TestCase
 {
     public function testdeleteMoviesRoute()
     {
+        // se especifica que la siguiente ruta de un estado 200
         $response = $this->get(route('movies.delete'));
         $response->assertStatus(200);
     }
 
     public function testpostMoviesRoute()
     {
+        // se especifica que la siguiente ruta de un estado 200
         $response = $this->get(route('movies.post'));
         $response->assertStatus(200);
     }
     public function testGetMoviesRoute()
     {
         $response = $this->get(route('movies.get'));
-        $response->assertViewHas('movies');
         // Verificar que los datos de la película se pasan correctamente a la vista
+        $response->assertViewHas('movies');
         $movie = Movie::first();
         $response->assertSee($movie->title);
+        // se especifica que la siguiente ruta de un estado 200
         $response->assertStatus(200);
     }
     public function testdeleteMovieRoute()
     {
+        // se especifica que la siguiente ruta de un estado 302, porque esta ruta redirecciona
         $movie = 8;
         $response = $this->withHeaders([
             'X-CSRF-TOKEN' => csrf_token(),

@@ -5,6 +5,8 @@ use Illuminate\Support\Facades\Http;
 
 class RequestsHttp {
     public static function get(string $url, $headers = array()) {
+
+        // metodo que simplifica la llamada de los enpointe get del enpoint de tercero themoviedb
         if(!$headers) $headers = [
             'Authorization' => 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI2MjBlMGZmYTdhNDBhN2RjMzFkOGEyYmUwZDE4YzViOSIsInN1YiI6IjYzMWJhYzE0MGYxZTU4MDA5MmRjYzg2ZSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.j6Q4_2RgJ_1bpeIxo4WWAq4XDPG1Owz9fbABy0RP0Do',
             'accept' => 'application/json'

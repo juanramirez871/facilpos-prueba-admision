@@ -8,6 +8,7 @@ return new class extends Migration
 {
     public function up(): void
     {
+        // creacion de la migracion movies
         Schema::create('movies', function (Blueprint $table) {
             $table->id();
             $table->string('name');

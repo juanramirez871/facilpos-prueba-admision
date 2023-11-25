@@ -8,6 +8,7 @@ return new class extends Migration
 {
     public function up()
     {
+        // creacion de la migracion de la tabla intermedia movies_genders
         Schema::create('movies_genders', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('movie_id');
