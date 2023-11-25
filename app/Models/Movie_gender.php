@@ -12,10 +12,10 @@ class Movie_gender extends Model
     protected $fillable = ['movie_id', "gender_id"];
     public $timestamps = false;
 
-    public static function createMovieGender(array $gendersId, int $idMovies){
-        foreach ($gendersId as $genderId) {
-            $gendersMovies = self::firstOrNew(['gender_id' => $genderId, "movie_id" => $idMovies]);
-            $gendersMovies->fill(['movie_id' => $idMovies, 'gender_id' => $genderId]);
+    public static function createMovieGender(array $genders, int $idMovie){
+        foreach ($genders as $gender) {
+            $gendersMovies = self::firstOrNew(['gender_id' => $gender["id"], "movie_id" => $idMovie]);
+            $gendersMovies->fill(['movie_id' => $idMovie, 'gender_id' => $gender["id"]]);
             $gendersMovies->save();
         }
     }

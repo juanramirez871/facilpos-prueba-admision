@@ -11,10 +11,10 @@ return new class extends Migration
         Schema::create('movies', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->string('lenguage');
-            $table->string('title');
-            $table->string('summary');
-            $table->string('poster');
+            $table->string('lenguage') -> nullable();
+            $table->string('title') -> nullable();
+            $table->text('summary') -> nullable();
+            $table->string('poster') -> nullable();
         });
     }
 
