@@ -133,3 +133,21 @@ background-color: #f1f1f1;
     margin-bottom: 10px;
     display: inline-block;
   }
+
+  @media (max-width: 1300px) {
+    .containerMovies{
+        grid-template-columns: auto auto auto;
+    }
+  }
+
+  @media (max-width: 1000px) {
+    .containerMovies{
+        grid-template-columns: auto auto;
+    }
+  }
+
+  @media (max-width: 700px) {
+    .containerMovies{
+        grid-template-columns: auto;
+    }
+  }
