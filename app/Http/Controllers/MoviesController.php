@@ -64,7 +64,7 @@ class MoviesController extends Controller
     public function getMovies(){
         try{
 
-            $movies = Movie::all() -> toArray();
+            $movies = Movie::with('genders') -> get() -> toArray();
             return view('movies', ['movies' => $movies]);
         }
         catch(\Exception $e){

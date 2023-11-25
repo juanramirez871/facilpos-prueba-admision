@@ -9,16 +9,19 @@
     <body>
         <h1>Peliculas Facilpost - prueba admision</h1>
         <section style="display: flex">
-            <form method="POST" action="{{ route('movies.post') }}">
-                @csrf
-                <button class="btn" type="submit" style="background: #9acdff" >Traer cartelera</button>
-            </form>
-            <form method="POST" action="{{ route('movies.delete') }}">
-                @csrf
-                @method('DELETE')
-                <button class="btn" type="submit" style="background: #ff9a9a">Eliminar cartelera</button>
-            </form>
+            @if(!$movies)
+                <form method="POST" action="{{ route('movies.post') }}">
+                    @csrf
+                    <button class="btn" type="submit" id="addBillBoard" style="background: #9acdff" >Traer cartelera</button>
+                </form>
+            @endif
+                <form method="POST" action="{{ route('movies.delete') }}">
+                    @csrf
+                    @method('DELETE')
+                    <button class="btn" id="removeBillBoard" type="submit" style="background: #ff9a9a">Eliminar cartelera</button>
+                </form>
         </section>
+        <span class="loader" style="margin-top: 20px"></span>
         <section>
             @if(!$movies)
                 <h1>¡La base de datos esta vacia! 😮</h1>
@@ -33,13 +36,16 @@
                             <p class="p10">{{ $movie["title"] }}</p>
                             <b class="p10">Lenguaje original: <span>{{ $movie["lenguage"] }}</span></b><br/>
                             <p class="p10 summary">
-                                {{ $movie["summary"] }}
+                                {{ $movie["summary"] }}<br/><br/>
+                                    @foreach($movie["genders"] as $gender)
+                                    <span class="label">{{ $gender["name"] }}</span>
+                                    @endforeach
                             </p>
                             <form method="POST" action="{{ route('movie.delete', $movie["id"]) }}">
                                 @csrf
                                 @method('DELETE')
-                                <button type="submit" class="delete" style="background: transparent; border: none">
-                                    <img src="https://cdn-icons-png.flaticon.com/512/458/458594.png" />
+                                <button id="removeMovie" type="submit" class="delete" style="background: transparent; border: none">
+                                    <img id="removeMovie" src="https://cdn-icons-png.flaticon.com/512/458/458594.png" />
                                 </button>
                             </form>
                         </div>
@@ -48,5 +54,7 @@
                 @endif
             </div>
         </section>
+
+        <script src="{{ URL::asset('assets/js/index.js') }}"></script>
     </body>
 </html>

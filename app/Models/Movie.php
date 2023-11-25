@@ -21,4 +21,9 @@ class Movie extends Model
 
         return $movieModel -> toArray();
     }
+
+    public function genders()
+    {
+        return $this->belongsToMany(Gender::class, 'movies_genders');
+    }
 }
