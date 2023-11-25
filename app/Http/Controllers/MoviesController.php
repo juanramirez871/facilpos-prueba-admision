@@ -27,7 +27,7 @@ class MoviesController extends Controller
                 array_push($movies, $movieModel);
             }
             DB::commit();
-            return $this -> susccesResponse($movies, 200);
+            return redirect()->back()->with('success', 'Peliculas creadas correctamente');
         }
         catch(\Exception $e){
             DB::rollback();
@@ -41,7 +41,7 @@ class MoviesController extends Controller
             Movie_gender::truncate();
             Movie::truncate();
             DB::commit();
-            return $this -> susccesResponse(["message" => "Peliculas eliminadas correctamente"], 200);
+            return redirect()->back()->with('success', 'Peliculas eliminadas correctamente');
         }
         catch(\Exception $e){
             DB::rollback();
@@ -54,7 +54,7 @@ class MoviesController extends Controller
             DB::beginTransaction();
             $movie -> delete();
             DB::commit();
-            return $this -> susccesResponse(["title" => "Pelicula eliminada correctamente"], 200);
+            return redirect()->back()->with('success', 'Pelicula eliminadas correctamente');
         }
         catch(\Exception $e){
             DB::rollback();
@@ -65,7 +65,7 @@ class MoviesController extends Controller
         try{
 
             $movies = Movie::all() -> toArray();
-            return $this -> susccesResponse($movies, 200);
+            return view('movies', ['movies' => $movies]);
         }
         catch(\Exception $e){
            return $this -> errorResponse($e->getMessage(), 400);
