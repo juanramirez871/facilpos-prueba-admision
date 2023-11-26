@@ -36,12 +36,12 @@ DB_PASSWORD=123
 CREATE DATABASE tu_nombre_DB;
 ```
 - ejecuta el siguiente comando en la terminal para ejecutar las migraciones ```php artisan migrate```
-- ejecuta el siguiente comando en la terminal ```php artisan server```
+- ejecuta el siguiente comando en la terminal ```php artisan serve```
 - ingresa a la url mostrada, podras ver ya la interfaz de usuario
 
 *❗El codigo sql de la creacion de las tablas se puede observar en databases.sql❗*
 
 ## Ejecucion de los test
 
-- para correr los test debe ejecutar el siguiente comando
+- para correr los test debe ejecutar el siguiente comando. ⚠️para correr los test debes ya haber poblado la base de datos desde la interfaz del usuario⚠️
 ```php artisan test```

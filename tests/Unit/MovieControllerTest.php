@@ -5,6 +5,7 @@ namespace Tests\Feature;
 use App\Models\Movie;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
+use Illuminate\Support\Facades\DB;
 use Tests\TestCase;
 
 class MovieControllerTest extends TestCase
@@ -35,10 +36,12 @@ class MovieControllerTest extends TestCase
     public function testdeleteMovieRoute()
     {
         // se especifica que la siguiente ruta de un estado 302, porque esta ruta redirecciona
+        DB::beginTransaction();
         $movie = Movie::first();
         $response = $this->withHeaders([
             'X-CSRF-TOKEN' => csrf_token(),
         ])->delete(route('movie.delete', ['movie' => $movie -> id]));
         $response->assertStatus(302);
+        DB::rollBack();
     }
 }

@@ -35,7 +35,11 @@
                 <div class="containerMovies">
                 @foreach($movies as $movie)
                     <div class="card">
-                        <img src="https://image.tmdb.org/t/p/w500{{ $movie["poster"] }}" alt="peliculas">
+                            @if(strpos($movie["poster"], "http") === 0)
+                                <img src="{{ $movie["poster"] }}" alt="peliculas">
+                            @else
+                                <img src="https://image.tmdb.org/t/p/w500{{ $movie["poster"] }}" alt="peliculas">
+                            @endif
                         <div class="info">
                             <h2 class="p10">{{ $movie["name"] }}</h2>
                             <b class="p10">titulo original:</b>
