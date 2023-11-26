@@ -4,8 +4,8 @@
 
 ## Tecnologias aplicadas
 - [Laravel](https://laravel.com/) en el parte del backend con su arquitectura MVC
-- [PostgresSQL](https://bootcamp.laravel.com) en la parte de base de datos
-- [Blade](https://www.postgresql.org/) en la parte del frontend
+- [PostgresSQL](https://www.postgresql.org/) en la parte de base de datos
+- [Blade](https://laravel.com/docs/10.x/blade) en la parte del frontend
 
 ## Funcionalidades
 - Consumo del api de tercero: : https://www.themoviedb.org/ - trae la cartelera de peliculas y la pobla en la base de datos local de postgres
@@ -14,7 +14,7 @@
 
 ## Esquema de la base de datos
 
-![image](https://discord.com/channels/@me/1130302388159381596/1178308504294002688)
+![image](https://cdn.discordapp.com/attachments/1130302388159381596/1178308504067518535/image.png?ex=6575ac4f&is=6563374f&hm=3692193aad80644749fc5081898d9e3402e35fc29d28547189df27ce14d203ff&)
 
 ## *Ejecucion del proyecto* 🏃
 
