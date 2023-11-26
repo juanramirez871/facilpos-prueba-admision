@@ -83,7 +83,7 @@ class MoviesController extends Controller
     public function getMovies(){
         try{
             // se trae las peliculas con los generos relacionados
-            $movies = Movie::with('genders') -> get() -> toArray();
+            $movies = Movie::with('genders') -> orderBy("id", "asc") -> get() -> toArray();
             return view('movies', ['movies' => $movies]);
         }
         catch(\Exception $e){
@@ -96,7 +96,7 @@ class MoviesController extends Controller
             // llena el modelos especificados en la ruta y actualiza los nuevos datos y los guarda
             $movie -> fill($request -> toArray());
             $movie -> save();
-            return $this -> susccesResponse($movie -> toArray(), 200);
+            return redirect()->back()->with('success', 'Pelicula editada correctamente');
         }
         catch(\Exception $e){
            return $this -> errorResponse($e->getMessage(), 400);

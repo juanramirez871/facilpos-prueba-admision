@@ -40,7 +40,7 @@
                             <h2 class="p10">{{ $movie["name"] }}</h2>
                             <b class="p10">titulo original:</b>
                             <p class="p10">{{ $movie["title"] }}</p>
-                            <b class="p10">Lenguaje original: <span>{{ $movie["lenguage"] }}</span></b><br/>
+                            <b class="p10">Lenguaje original: </b><span>{{ $movie["lenguage"] }}</span>
                             <p class="p10 summary">
                                 {{ $movie["summary"] }}<br/><br/>
                                 {{-- recorre los generos de la pelicula para mostrarlos --}}
@@ -56,10 +56,45 @@
                                     <img id="removeMovie" src="https://cdn-icons-png.flaticon.com/512/458/458594.png" />
                                 </button>
                             </form>
+                            <button id="editMovie" data-id="{{ $movie["id"] }}" type="submit" class="btnEditar">Editar</button>
                         </div>
                     </div>
                 @endforeach
                 @endif
+            </div>
+        </section>
+
+        {{-- Mpdal donde se editara la pelicula seleccionada --}}
+        <section class="modal">
+            <div>
+                <img class="imgModal" id="poster" src="" alt="peliculas">
+            </div>
+            <div>
+                <div>
+                    <form method="POST" id="formModal" action="">
+                        @csrf
+                        @method('PUT')
+                        <div>
+                            <label for="name">Pelicula:</label>
+                            <input type="text" id="name" name="name" value="alguna pelicula" required>
+                            <input type="hidden" name="poster" id="inputPoster">
+                        </div>
+                        <div>
+                            <label for="title">Titulo original:</label>
+                            <input type="text" id="title" name="title" value="alguna pelicula original" required>
+                        </div>
+                        <div>
+                            <label for="lenguage">Lenguage original:</label>
+                            <input type="text" id="lenguage" name="lenguage" value="Es" required>
+                        </div>
+                        <div>
+                            <label for="summary">Sinopsis:</label>
+                            <textarea type="text" id="summary" name="summary" required >alguna sinopsis</textarea>
+                        </div>
+                        <button class="saveEdit" type="submit">Editar</button>
+                    </form>
+                </div>
+                <img id="closeModal" src="https://cdn-icons-png.flaticon.com/512/458/458594.png" />
             </div>
         </section>
 

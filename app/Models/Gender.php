@@ -13,9 +13,14 @@ class Gender extends Model
     // se le especifica que no quiero timestamp
     public $timestamps = false;
 
-    public static function createGendersUnique(array $gendersData){
-
-        // crea los generos enviados y devuelve sus id, si existe ya el registro continua, si no lo crea
+    /**
+         * crea los generos enviados y devuelve sus id, si existe ya el registro continua, si no, lo crea
+         *
+         * @param  array  $genderData   un array con la informacion de los generos.
+         *
+         * @return array $genders devuelve los generos con la informacion segun la db
+    */
+    public static function createGendersUnique(array $gendersData): array{
         $genders = [];
         foreach ($gendersData as $gender) {
             $genderModel = self::firstOrNew(['name' => $gender['name']]);

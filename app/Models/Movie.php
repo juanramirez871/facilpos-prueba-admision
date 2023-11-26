@@ -12,9 +12,15 @@ class Movie extends Model
     protected $fillable = ['name', "lenguage", "title", "summary", "poster"];
     // se le especifica que no quiero timestamp
     public $timestamps = false;
-    public static function createMovie(array $moviesData){
 
-        // se crea una pelicula
+    /**
+         * se crea una pelicula
+         *
+         * @param  array  $moviesData   un array con la informacion de las peliculas a guardar.
+         *
+         * @return array $movieModel    la pelicula creada
+    */
+    public static function createMovie(array $moviesData): array {
         $movieModel = self::create([
             "name" => $moviesData["title"],
             "lenguage" => $moviesData["original_language"],

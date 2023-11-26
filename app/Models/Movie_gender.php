@@ -14,8 +14,14 @@ class Movie_gender extends Model
     // se le especifica que no quiero timestamp
     public $timestamps = false;
 
-    public static function createMovieGender(array $genders, int $idMovie){
-        // recorre cada genero enviado y verifica en la base de datos si existe continue, si no que lo cree
+     /**
+         * recorre cada genero enviado y verifica en la base de datos si existe continue, si no que lo cree con su pelicula correspondiente
+         *
+         * @param  array  $genders   un array con la informacion de los generos.
+         *
+         * @return int $idMovie el id de la pelica relacionada a los generos
+    */
+    public static function createMovieGender(array $genders, int $idMovie): void {
         foreach ($genders as $gender) {
             $gendersMovies = self::firstOrNew(['gender_id' => $gender["id"], "movie_id" => $idMovie]);
             if($gendersMovies -> exists) continue;
