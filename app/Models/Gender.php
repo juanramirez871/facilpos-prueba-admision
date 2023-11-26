@@ -20,18 +20,20 @@ class Gender extends Model
          *
          * @return array $genders devuelve los generos con la informacion segun la db
     */
-    public static function createGendersUnique(array $gendersData): array{
-        $genders = [];
-        foreach ($gendersData as $gender) {
-            $genderModel = self::firstOrNew(['name' => $gender['name']]);
-            if(isset($genderModel->id)){
-                array_push($genders, ["id" => $genderModel -> id, "name" => $genderModel -> name]);
-                continue;
-            };
-            $genderModel->fill($gender);
-            $genderModel->save();
-            array_push($genders, ["id" => $genderModel -> id, "name" => $genderModel -> name]);
+    public static function createGendersUnique(array $gendersData): array
+{
+    $genders = [];
+
+    foreach ($gendersData as $gender) {
+        $genderModel = self::firstOrNew(['name' => $gender['name']]);
+        if ($genderModel->exists) {
+            $genders[] = $genderModel->only(['id', 'name']);
+            continue;
         }
-        return $genders;
+        $genderModel->fill($gender);
+        $genderModel->save();
+        $genders[] = $genderModel->only(['id', 'name']);
     }
+    return $genders;
+}
 }
