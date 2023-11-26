@@ -13,15 +13,19 @@ class MovieControllerTest extends TestCase
     public function testdeleteMoviesRoute()
     {
         // se especifica que la siguiente ruta de un estado 200
+        DB::beginTransaction();
         $response = $this->get(route('movies.delete'));
         $response->assertStatus(200);
+        DB::rollBack();
     }
 
     public function testpostMoviesRoute()
     {
         // se especifica que la siguiente ruta de un estado 200
+        DB::beginTransaction();
         $response = $this->get(route('movies.post'));
         $response->assertStatus(200);
+        DB::rollBack();
     }
     public function testGetMoviesRoute()
     {
