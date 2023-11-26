@@ -11,6 +11,7 @@
 - Consumo del api de tercero: : https://www.themoviedb.org/ - trae la cartelera de peliculas y la pobla en la base de datos local de postgres
 - creacion de enpoint de eliminar las peliculas y poder editarlas
 - visualizacion de las peliculas en el frontend
+- Editar una pelicula
 
 ## Esquema de la base de datos
 
