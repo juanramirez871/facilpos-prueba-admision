@@ -35,10 +35,10 @@ class MovieControllerTest extends TestCase
     public function testdeleteMovieRoute()
     {
         // se especifica que la siguiente ruta de un estado 302, porque esta ruta redirecciona
-        $movie = 8;
+        $movie = Movie::first();
         $response = $this->withHeaders([
             'X-CSRF-TOKEN' => csrf_token(),
-        ])->delete(route('movie.delete', ['movie' => $movie]));
+        ])->delete(route('movie.delete', ['movie' => $movie -> id]));
         $response->assertStatus(302);
     }
 }
