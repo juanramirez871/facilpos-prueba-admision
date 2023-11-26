@@ -14,14 +14,14 @@
 
 ## Esquema de la base de datos
 
-![image](https://)
+![image](https://discord.com/channels/@me/1130302388159381596/1178308504294002688)
 
 ## *Ejecucion del proyecto* 🏃
 
 *⚠️Para poder ejecutar este proyecto debes tener previamente instalado PHP - postgresSQL y composer⚠️*
 - clonar este repositorio en el directorio de tu eleccion
 - abrir la terminal en la ruta  del proyecto y ejecutar ```composer install```
-- copiar el archivo .env.example y renovarlo .env para las variables de entorno - cambiar los siguientes datos segun tu contexto
+- copiar el archivo .env.example y renombrarlo a .env para las variables de entorno - cambiar los siguientes datos segun tu contexto
 ```
 DB_CONNECTION=pgsql
 DB_HOST=127.0.0.1
@@ -32,7 +32,9 @@ DB_PASSWORD=123
 ```
 - en tu postgresSQL crear la base de datos que pusistes en *DB_DATABASE* - o ejecuta las siguientes sentecias de sql
 ```
+CREATE DATABASE tu_nombre_DB;
 ```
+- ejecuta el siguiente comando en la terminal para ejecutar las migraciones ```php artisan migrate```
 - ejecuta el siguiente comando en la terminal ```php artisan server```
 - ingresa a la url mostrada, podras ver ya la interfaz de usuario
 
